@@ -7,16 +7,19 @@ st.set_page_config(page_title="AI Fitness Planner")
 
 os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
-llm = ChatGroq(model_name="llama3-8b-8192")
+llm = ChatGroq(
+    model_name="llama-3.1-8b-instant",
+    temperature=0.7
+)
 
 st.title("🏋️ Personalized Workout & Diet Planner")
 
-age = st.number_input("Age", 12, 65)
-gender = st.selectbox("Gender", ["Male","Female","Prefer not to say"])
-goal = st.selectbox("Fitness Goal", ["Fat Loss", "Muscle Gain", "Maintenance"])
-diet = st.selectbox("Diet Preference", ["Vegetarian", "Non-Vegetarian", "Vegan"])
-budget = st.selectbox("Budget", ["Low", "Medium", "High"])
-equipment = st.selectbox("Workout Type", ["Home", "Gym", "No Equipment"])
+age = st.number_input("Age", 16, 65)
+gender = st.radio("Gender", ["Male","Female","Prefer not to say"])
+goal = st.radio("Fitness Goal", ["Fat Loss", "Muscle Gain", "Maintenance"])
+diet = st.radio("Diet Preference", ["Vegetarian", "Non-Vegetarian", "Vegan"])
+budget = st.radio("Budget", ["Low", "Medium", "High"])
+equipment = st.radio("Workout Type", ["Home", "Gym", "No Equipment"])
 time = st.slider("Workout Time (minutes)", 15, 120, 30)
 
 if st.button("Generate My Plan"):
