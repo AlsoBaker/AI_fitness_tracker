@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 from langchain_groq import ChatGroq
+from langchain_core.messages import HumanMessage
 
 st.set_page_config(page_title="AI Fitness Planner")
 
@@ -41,6 +42,6 @@ Rules:
 """
 
     with st.spinner("Generating your plan..."):
-        response = llm.invoke(prompt)
+        response = llm.invoke([HumanMessage(content=prompt)])
         st.subheader("📋 Your Personalized Plan")
         st.write(response.content)
