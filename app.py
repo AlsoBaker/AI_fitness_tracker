@@ -9,44 +9,52 @@ st.set_page_config(
     layout="centered"
 )
 
-theme = st.toggle("🌙 Dark Mode")
+theme = st.toggle("🎨 Gradient Background")
 
 if theme:
-    bg_color = "#0e1117"
-    card_color = "#1c1f26"
-    text_color = "#ffffff"
-else:
-    bg_color = "#f9fafb"
-    card_color = "#ffffff"
+    bg_gradient = "linear-gradient(180deg, #0b1c3d 0%, #ffffff 70%)"
     text_color = "#000000"
+    card_color = "#ffffff"
+else:
+    bg_gradient = "#ffffff"
+    text_color = "#000000"
+    card_color = "#ffffff"
 
 st.markdown(
     f"""
     <style>
-    /* App background */
-    body {{
-        background-color: {bg_color};
+    /* Force full app background */
+    html, body {{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: {bg_gradient} !important;
         color: {text_color};
     }}
 
-    /* Main app container */
+    /* Streamlit main container */
     section[data-testid="stAppViewContainer"] {{
-        background-color: {bg_color};
-        color: {text_color};
+        background: {bg_gradient} !important;
     }}
 
-    /* Card styling */
+    /* Remove white background layer Streamlit adds */
+    div[data-testid="stVerticalBlock"] {{
+        background: transparent !important;
+    }}
+
+    /* Card UI */
     .card {{
         padding: 20px;
-        border-radius: 12px;
+        border-radius: 14px;
         background-color: {card_color};
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
         margin-bottom: 20px;
     }}
 
-    /* Text inputs & labels */
-    label, p, span, div {{
-        color: {text_color};
+    /* Ensure text stays black */
+    h1, h2, h3, h4, h5, h6,
+    p, span, label, div {{
+        color: {text_color} !important;
     }}
     </style>
     """,
