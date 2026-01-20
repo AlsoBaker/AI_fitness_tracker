@@ -23,16 +23,30 @@ else:
 st.markdown(
     f"""
     <style>
-    .main {{
+    /* App background */
+    body {{
         background-color: {bg_color};
         color: {text_color};
     }}
+
+    /* Main app container */
+    section[data-testid="stAppViewContainer"] {{
+        background-color: {bg_color};
+        color: {text_color};
+    }}
+
+    /* Card styling */
     .card {{
         padding: 20px;
         border-radius: 12px;
         background-color: {card_color};
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         margin-bottom: 20px;
+    }}
+
+    /* Text inputs & labels */
+    label, p, span, div {{
+        color: {text_color};
     }}
     </style>
     """,
